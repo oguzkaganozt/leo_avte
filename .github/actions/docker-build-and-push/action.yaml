@@ -121,7 +121,6 @@ runs:
           ${{ steps.meta-base.outputs.bake-file }}
           ${{ steps.meta-devel.outputs.bake-file }}
           ${{ steps.meta-prebuilt.outputs.bake-file }}
-          ${{ steps.meta-runtime-monolithic.outputs.bake-file }}
           ${{ steps.meta-runtime-planning-control.outputs.bake-file }}
         set: |
           ${{ inputs.build-args }}
