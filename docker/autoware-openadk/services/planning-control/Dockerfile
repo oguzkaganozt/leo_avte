@@ -9,7 +9,7 @@ ARG ROS_DISTRO
 
 # Copy install folder from prebuilt
 FROM ghcr.io/autowarefoundation/autoware-openadk:prebuilt-${ROS_DISTRO}-${PLATFORM} as prebuilt
-FROM base as planning-control
+FROM base as runtime-planning-control
 COPY --from=prebuilt /autoware/install/ /autoware/install/
 
 COPY autoware.repos /autoware/
