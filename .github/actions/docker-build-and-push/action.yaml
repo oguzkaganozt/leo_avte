@@ -89,7 +89,7 @@ runs:
           latest=false
           prefix=${{ inputs.tag-prefix }}
           suffix=-prebuilt${{ inputs.tag-suffix }}
-          
+
     - name: Docker meta for runtime-planning-control
       id: meta-runtime-planning-control
       uses: docker/metadata-action@v4

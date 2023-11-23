@@ -48,7 +48,7 @@ export platform
 export rosdistro
 
 set -x
-# Build base images
+# Build base,devel,prebuilt images
 docker buildx bake --load --progress=plain -f "$SCRIPT_DIR/docker-bake.hcl" \
     --set "*.context=$WORKSPACE_ROOT" \
     --set "*.ssh=default" \
