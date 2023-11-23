@@ -45,6 +45,10 @@ target "runtime-planning-control" {
   inherits = ["docker-metadata-action-runtime-planning-control"]
   dockerfile = "docker/autoware-openadk/services/planning-control/Dockerfile"
   target = "runtime-planning-control"
+  contexts = {
+    baseimage = "target:base"
+    prebuiltimage = "target:prebuilt"
+  }
 }
 
 target "simulator" {
