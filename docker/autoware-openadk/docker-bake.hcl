@@ -1,15 +1,15 @@
 group "default" {
-  targets = ["base", "devel", "prebuilt"]
+  targets = ["base", "devel", "prebuilt", "runtime-planning-control"]
 }
 
 // For docker/metadata-action
 target "docker-metadata-action-base" {}
 target "docker-metadata-action-devel" {}
 target "docker-metadata-action-prebuilt" {}
-target "docker-metadata-action-monolithic" {}
-target "docker-metadata-action-main-perception" {}
-target "docker-metadata-action-planning-control" {}
-target "docker-metadata-action-simulator" {}
+target "docker-metadata-action-runtime-monolithic" {}
+target "docker-metadata-action-runtime-main-perception" {}
+target "docker-metadata-action-runtime-planning-control" {}
+target "docker-metadata-action-runtime-simulator" {}
 
 target "base" {
   inherits = ["docker-metadata-action-base"]
@@ -29,22 +29,22 @@ target "prebuilt" {
   target = "prebuilt"
 }
 
-target "monolithic" {
+target "runtime-monolithic" {
   inherits = ["docker-metadata-action-monolithic"]
   dockerfile = "docker/autoware-openadk/monolithic/Dockerfile"
-  target = "monolithic"
+  target = "runtime-monolithic"
 }
 
-target "main-perception" {
+target "runtime-main-perception" {
   inherits = ["docker-metadata-action-main-perception"]
   dockerfile = "docker/autoware-openadk/services/main-perception/Dockerfile"
-  target = "main-perception"
+  target = "runtime-main-perception"
 }
 
-target "planning-control" {
+target "runtime-planning-control" {
   inherits = ["docker-metadata-action-planning-control"]
   dockerfile = "docker/autoware-openadk/services/planning-control/Dockerfile"
-  target = "planning-control"
+  target = "runtime-planning-control"
 }
 
 target "simulator" {

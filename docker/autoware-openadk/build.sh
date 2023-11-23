@@ -14,7 +14,7 @@ while [ "$1" != "" ]; do
         option_platform="$2"
         shift
         ;;
-    --devel-only)
+    --prebuilt-only)
         option_no_runtime=true
         ;;
     *)
@@ -60,19 +60,16 @@ docker buildx bake --load --progress=plain -f "$SCRIPT_DIR/docker-bake.hcl" \
     --set "devel.tags=ghcr.io/autowarefoundation/autoware-openadk:devel-$rosdistro-$platform" \
     --set "prebuilt.tags=ghcr.io/autowarefoundation/autoware-openadk:prebuilt-$rosdistro-$platform"
 
-# Build runtime images
+# Set build targets
 if [ "$option_no_runtime" = "false" ]; then
     docker buildx bake --load --progress=plain -f "$SCRIPT_DIR/docker-bake.hcl" \
-    --set "*.context=$WORKSPACE_ROOT" \
-    --set "*.ssh=default" \
-    --set "*.platform=$platform" \
-    --set "*.args.PLATFORM=$platform" \
-    --set "*.args.ROS_DISTRO=$rosdistro" \
-    --set "*.args.BASE_IMAGE=$base_image" \
-    --set "monolithic.tags=ghcr.io/autowarefoundation/autoware-openadk:monolithic-$rosdistro-$platform" \
-    --set "main-perception.tags=ghcr.io/autowarefoundation/autoware-openadk:main-perception-$rosdistro-$platform" \
-    --set "planning-control.tags=ghcr.io/autowarefoundation/autoware-openadk:planning-control-$rosdistro-$platform" \
-    --set "simulator.tags=ghcr.io/autowarefoundation/autoware-openadk:simulator-$rosdistro-$platform" \
-    monolithic main-perception planning-control simulator
+        --set "*.context=$WORKSPACE_ROOT" \
+        --set "*.ssh=default" \
+        --set "*.platform=$platform" \
+        --set "*.args.PLATFORM=$platform" \
+        --set "*.args.ROS_DISTRO=$rosdistro" \
+        --set "*.args.BASE_IMAGE=$base_image" \
+        --set "runtime-planning-control.tags=ghcr.io/autowarefoundation/autoware-openadk:runtime-before-planning-$rosdistro-$platform" \
+        runtime-planning-control
 fi
 set +x

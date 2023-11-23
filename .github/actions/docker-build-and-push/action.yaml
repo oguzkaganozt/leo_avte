@@ -89,19 +89,7 @@ runs:
           latest=false
           prefix=${{ inputs.tag-prefix }}
           suffix=-prebuilt${{ inputs.tag-suffix }}
-        
-    - name: Docker meta for runtime-monolithic
-      id: meta-runtime-monolithic
-      uses: docker/metadata-action@v4
-      with:
-        images: ghcr.io/${{ github.repository_owner }}/${{ inputs.bake-target }}
-        tags: ${{ steps.set-docker-tags.outputs.tags }}
-        bake-target: docker-metadata-action-runtime-monolithic
-        flavor: |
-          latest=false
-          prefix=${{ inputs.tag-prefix }}
-          suffix=-runtime-monolithic${{ inputs.tag-suffix }}
-    
+
     - name: Docker meta for runtime-planning-control
       id: meta-runtime-planning-control
       uses: docker/metadata-action@v4
