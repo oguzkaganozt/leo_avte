@@ -30,19 +30,19 @@ target "prebuilt" {
 }
 
 target "runtime-monolithic" {
-  inherits = ["docker-metadata-action-monolithic"]
+  inherits = ["docker-metadata-action-runtime-monolithic"]
   dockerfile = "docker/autoware-openadk/monolithic/Dockerfile"
   target = "runtime-monolithic"
 }
 
 target "runtime-main-perception" {
-  inherits = ["docker-metadata-action-main-perception"]
+  inherits = ["docker-metadata-action-runtime-main-perception"]
   dockerfile = "docker/autoware-openadk/services/main-perception/Dockerfile"
   target = "runtime-main-perception"
 }
 
 target "runtime-planning-control" {
-  inherits = ["docker-metadata-action-planning-control"]
+  inherits = ["docker-metadata-action-runtime-planning-control"]
   dockerfile = "docker/autoware-openadk/services/planning-control/Dockerfile"
   target = "runtime-planning-control"
 }
